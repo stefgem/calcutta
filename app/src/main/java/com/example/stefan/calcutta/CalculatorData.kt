@@ -8,13 +8,17 @@ import kotlin.math.sqrt
 class CalculatorData {
 
     var firstOperand: Double = 0.0
-    var secondOperand = 0.0
+    var secondOperand: Double = 0.0
+    var result: Double = 0.0
     var operator: String = ""
     var displayedText = MutableLiveData<StringBuilder>()
 
 
     fun clearDisplay() {
         displayedText.postValue(null)
+        firstOperand = 0.0
+        secondOperand = 0.0
+        result = 0.0
     }
 
     fun updateDisplay(str: String) {
@@ -31,11 +35,17 @@ class CalculatorData {
 
     fun squareRoot() {
         firstOperand = displayedText.value?.toString()?.toDouble() ?: 0.0
-        firstOperand = sqrt(firstOperand)
+        result = sqrt(firstOperand)
+    }
 
+    fun negate() {
+        firstOperand = displayedText.value?.toString()?.toDouble() ?: 0.0
+        result = firstOperand * -1
+    }
+
+    fun equals() {
         val decimalFormat = DecimalFormat("#.######")
         decimalFormat.roundingMode = RoundingMode.HALF_UP
-
-        displayedText.postValue(StringBuilder(decimalFormat.format(firstOperand)))
+        displayedText.postValue(StringBuilder(decimalFormat.format(result)))
     }
 }

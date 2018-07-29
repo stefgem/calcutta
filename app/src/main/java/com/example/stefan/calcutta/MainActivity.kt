@@ -21,6 +21,8 @@ class MainActivity : AppCompatActivity() {
                     ?: run { textView.text = EMPTY_DISPLAY_STRING }
         })
 
+
+        viewModel.clearDisplay()
     }
 
     override fun onStart() {
@@ -62,6 +64,10 @@ class MainActivity : AppCompatActivity() {
 
         square_root_button.setOnClickListener {
             viewModel.squareRoot()
+        }
+
+        plus_minus_button.setOnClickListener {
+            viewModel.negate()
         }
         addition_button.setOnClickListener {
 

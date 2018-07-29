@@ -11,7 +11,9 @@ class CalculatorViewModel : ViewModel() {
     }
 
     fun enterDigit(digit: String) {
-        if (digit == "0" && data.displayedText.value == null) {
+        if (digit == "0"
+                && data.displayedText.value == null
+                && data.displayedText.value.toString() != "0") {
             // do nothing - this prevents leading zeros
         } else {
             data.appendDisplay(digit)
@@ -20,6 +22,16 @@ class CalculatorViewModel : ViewModel() {
 
     fun squareRoot() {
         data.squareRoot()
+        data.equals()
+    }
+
+    fun negate() {
+        data.negate()
+        data.equals()
+    }
+
+    fun equals() {
+        data.equals()
     }
 
 }

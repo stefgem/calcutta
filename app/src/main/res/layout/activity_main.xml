@@ -16,7 +16,6 @@
         android:layout_marginBottom="8dp"
         android:background="@android:color/holo_green_light"
         android:minHeight="100dp"
-        android:text="0 "
         android:textAlignment="textEnd"
         android:textSize="64sp"
         app:layout_constraintBottom_toTopOf="@+id/clear_button"
