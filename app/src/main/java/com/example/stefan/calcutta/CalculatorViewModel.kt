@@ -6,12 +6,20 @@ class CalculatorViewModel : ViewModel() {
 
     val data: CalculatorData = CalculatorData()
 
-
     fun clearDisplay() {
         data.clearDisplay()
     }
 
     fun enterDigit(digit: String) {
-        data.appendDisplay(digit)
+        if (digit == "0" && data.displayedText.value == null) {
+            // do nothing - this prevents leading zeros
+        } else {
+            data.appendDisplay(digit)
+        }
     }
+
+    fun squareRoot() {
+        data.squareRoot()
+    }
+
 }

@@ -59,5 +59,14 @@ class MainActivity : AppCompatActivity() {
         button9.setOnClickListener {
             viewModel.enterDigit("9")
         }
+
+        square_root_button.setOnClickListener {
+            viewModel.squareRoot()
+        }
+        addition_button.setOnClickListener {
+
+        }
+
+
     }
 }
