@@ -18,6 +18,8 @@ class CalculatorViewModel : ViewModel() {
                 && data.displayedText.value == null
                 && data.displayedText.value.toString() != "0") {
             // do nothing - this prevents leading zeros
+        } else if (data.displayedText.value.toString() == "0") {
+            data.updateDisplay(digit)
         } else {
             data.appendDisplay(digit)
         }
