@@ -8,6 +8,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    private val EMPTY_DISPLAY_STRING = "0"
     lateinit var viewModel: CalculatorViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,7 +17,8 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(CalculatorViewModel::class.java)
 
         viewModel.data.displayedText.observe(this, Observer { newDisplay ->
-            textView.text = newDisplay
+            newDisplay?.run { textView.text = newDisplay.toString() }
+                    ?: run { textView.text = EMPTY_DISPLAY_STRING }
         })
 
     }
@@ -24,8 +26,38 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
+        clear_button.setOnClickListener {
+            viewModel.clearDisplay()
+        }
+        button0.setOnClickListener {
+            viewModel.enterDigit("0")
+        }
         button1.setOnClickListener {
-            viewModel.enter1()
+            viewModel.enterDigit("1")
+        }
+        button2.setOnClickListener {
+            viewModel.enterDigit("2")
+        }
+        button3.setOnClickListener {
+            viewModel.enterDigit("3")
+        }
+        button4.setOnClickListener {
+            viewModel.enterDigit("4")
+        }
+        button5.setOnClickListener {
+            viewModel.enterDigit("5")
+        }
+        button6.setOnClickListener {
+            viewModel.enterDigit("6")
+        }
+        button7.setOnClickListener {
+            viewModel.enterDigit("7")
+        }
+        button8.setOnClickListener {
+            viewModel.enterDigit("8")
+        }
+        button9.setOnClickListener {
+            viewModel.enterDigit("9")
         }
     }
 }

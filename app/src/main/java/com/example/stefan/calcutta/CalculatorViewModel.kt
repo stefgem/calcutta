@@ -6,7 +6,12 @@ class CalculatorViewModel : ViewModel() {
 
     val data: CalculatorData = CalculatorData()
 
-    fun enter1() {
-        data.updateDisplay("1")
+
+    fun clearDisplay() {
+        data.clearDisplay()
+    }
+
+    fun enterDigit(digit: String) {
+        data.appendDisplay(digit)
     }
 }
