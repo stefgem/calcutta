@@ -62,6 +62,9 @@ class MainActivity : AppCompatActivity() {
             viewModel.enterDigit("9")
         }
 
+        decimal_button.setOnClickListener {
+            viewModel.enterDecimal()
+        }
         square_root_button.setOnClickListener {
             viewModel.squareRoot()
         }

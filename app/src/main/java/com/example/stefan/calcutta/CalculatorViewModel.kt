@@ -3,6 +3,8 @@ package com.example.stefan.calcutta
 import android.arch.lifecycle.ViewModel
 import com.example.stefan.calcutta.CalculatorData.Operator
 
+const val DECIMAL = "."
+
 class CalculatorViewModel : ViewModel() {
 
     val data: CalculatorData = CalculatorData()
@@ -18,6 +20,18 @@ class CalculatorViewModel : ViewModel() {
             // do nothing - this prevents leading zeros
         } else {
             data.appendDisplay(digit)
+        }
+    }
+
+    fun enterDecimal() {
+        data.displayedText.value?.let { value ->
+            if (value.toString().contains(DECIMAL)) {
+                // do nothing
+            } else {
+                data.appendDisplay(DECIMAL)
+            }
+        } ?: run {
+            data.appendDisplay("0$DECIMAL")
         }
     }
 
