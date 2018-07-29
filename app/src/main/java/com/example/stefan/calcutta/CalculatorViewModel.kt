@@ -1,6 +1,7 @@
 package com.example.stefan.calcutta
 
 import android.arch.lifecycle.ViewModel
+import com.example.stefan.calcutta.CalculatorData.Operator
 
 class CalculatorViewModel : ViewModel() {
 
@@ -20,6 +21,11 @@ class CalculatorViewModel : ViewModel() {
         }
     }
 
+    fun startAddition() = startBinaryOperation(Operator.ADDITION)
+    fun startSubtraction() = startBinaryOperation(Operator.SUBTRACTION)
+    fun startMultiplication() = startBinaryOperation(Operator.MULTIPLICATION)
+    fun startDivision() = startBinaryOperation(Operator.DIVISION)
+
     fun squareRoot() {
         data.squareRoot()
         data.equals()
@@ -31,7 +37,27 @@ class CalculatorViewModel : ViewModel() {
     }
 
     fun equals() {
-        data.equals()
+        if (!data.displayedText.value.isNullOrEmpty()) {
+            data.secondOperand = data.displayedText.value?.toString()?.toDouble() ?: 0.0
+        } else {
+            data.secondOperand = 0.0
+        }
+        data.operator?.let { operator ->
+            when (operator) {
+                Operator.ADDITION -> data.add()
+                Operator.SUBTRACTION -> data.subtract()
+                Operator.MULTIPLICATION -> data.multiply()
+                Operator.DIVISION -> data.divide()
+            }
+            data.equals()
+            data.operator = null
+        }
+    }
+
+    private fun startBinaryOperation(operator: Operator) {
+        data.operator = operator
+        data.firstOperand = data.displayedText.value?.toString()?.toDouble() ?: 0.0
+        data.displayedText.value = StringBuilder("")
     }
 
 }

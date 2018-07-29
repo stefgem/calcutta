@@ -7,12 +7,20 @@ import kotlin.math.sqrt
 
 class CalculatorData {
 
+    enum class Operator {
+        ADDITION,
+        SUBTRACTION,
+        MULTIPLICATION,
+        DIVISION
+    }
+
     var firstOperand: Double = 0.0
     var secondOperand: Double = 0.0
     var result: Double = 0.0
-    var operator: String = ""
-    var displayedText = MutableLiveData<StringBuilder>()
+    var operator: Operator? = null
 
+
+    var displayedText = MutableLiveData<StringBuilder>()
 
     fun clearDisplay() {
         displayedText.postValue(null)
@@ -31,6 +39,22 @@ class CalculatorData {
         } ?: run {
             displayedText.value = StringBuilder(str)
         }
+    }
+
+    fun add() {
+        result = firstOperand + secondOperand
+    }
+
+    fun subtract() {
+        result = firstOperand - secondOperand
+    }
+
+    fun multiply() {
+        result = firstOperand * secondOperand
+    }
+
+    fun divide() {
+        result = firstOperand / secondOperand
     }
 
     fun squareRoot() {

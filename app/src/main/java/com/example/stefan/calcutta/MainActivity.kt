@@ -70,6 +70,28 @@ class MainActivity : AppCompatActivity() {
             viewModel.negate()
         }
         addition_button.setOnClickListener {
+            val display = textView.text
+            viewModel.startAddition()
+            textView.text = display
+        }
+        subtraction_button.setOnClickListener {
+            val display = textView.text
+            viewModel.startSubtraction()
+            textView.text = display
+        }
+        multiplication_button.setOnClickListener {
+            val display = textView.text
+            viewModel.startMultiplication()
+            textView.text = display
+        }
+        division_button.setOnClickListener {
+            val display = textView.text
+            viewModel.startDivision()
+            textView.text = display
+        }
+
+        equals_button.setOnClickListener {
+            viewModel.equals()
 
         }
 
