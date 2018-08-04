@@ -71,9 +71,12 @@ class CalculatorViewModel : ViewModel() {
     }
 
     private fun startBinaryOperation(operator: Operator) {
-        data.operator = operator
-        data.firstOperand = data.displayedText.value?.toString()?.toDouble() ?: 0.0
-        data.displayedText.value = StringBuilder("")
+        data.operator?.run {
+        } ?: run {
+            data.operator = operator
+            data.firstOperand = data.displayedText.value?.toString()?.toDouble() ?: 0.0
+            data.displayedText.value = StringBuilder("")
+        }
     }
 
 }
